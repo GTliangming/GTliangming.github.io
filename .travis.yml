@@ -52,12 +52,12 @@ install:
 script:
   - hexo clean
   - hexo generate # generate static files
-  - hexo deploy
 after_success:
   - cd ./public
   - git init
   - git add .
   - git commit -m "Travis CI Auto Builder"
+  - ssh -T git@github.com
   - git push --quiet --force https://$GH_TOKEN@github.com/GTliangming/GTliangming.github.io.git master
 
 # 只有指定的分支提交时才会运行脚本
