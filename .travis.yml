@@ -44,6 +44,7 @@ cache:
     - node_modules
 before_install:
   - npm install -g hexo-cli
+  - npm install -g hexo
 install:
   - npm i
 
@@ -56,6 +57,7 @@ after_success:
   - git config --global user.name "liangming"
   - git config --global user.email "lmzs124083@163.com"
   - git add .
+  - git status
   - git commit -m "Travis CI Auto Builder"
   - git push --quiet --force https://$GH_TOKEN@github.com/GTliangming/GTliangming.github.io.git master
 
