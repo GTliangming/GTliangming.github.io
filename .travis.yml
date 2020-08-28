@@ -52,6 +52,7 @@ install:
 script:
   - hexo clean
   - hexo generate # generate static files
+  - hexo deploy
 after_success:
   # - cd ./public
   - git init
