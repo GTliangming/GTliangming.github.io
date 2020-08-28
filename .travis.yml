@@ -57,7 +57,7 @@ after_success:
   - git init
   - git add --all .
   - git commit -m "Travis CI Auto Builder"
-  - git push --quiet --force https://$GH_TOKEN@github.com/<your github username>/<your github username>.github.io.git master
+  - git push --quiet --force https://$GH_TOKEN@github.com/GTliangming/GTliangming.github.io.git master
 
 # 只有指定的分支提交时才会运行脚本
 branches:
