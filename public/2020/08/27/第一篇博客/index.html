@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="en" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>my-first-blog | 代码里有无尽的乐趣 ^_^</title><meta name="description" content="一、本地创建Hexo博客框架1、搭建所需环境Hexo官网地址：https:&#x2F;&#x2F;hexo.io&#x2F;上都对所需环境、版本信息都做了介绍，这里不过多介绍。2、配置本地仓库与远程仓库的ssh key打开终端，输入cd ~&#x2F;.ssh 查看是否有id_rsa 以及id_rsa.pub 文件，如果有或者自己已经配过。此项可以跳过。如果没有，现在开始创建新的• 打开终端，输入cd ~&#x2F;.ssh• 在ssh文件目录下"><meta name="keywords" content="web"><meta name="author" content="Bruce Liang"><meta name="copyright" content="Bruce Liang"><meta name="format-detection" content="telephone=no"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://yoursite.com/2020/08/27/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="my-first-blog"><meta property="og:url" content="http://yoursite.com/2020/08/27/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/"><meta property="og:site_name" content="代码里有无尽的乐趣 ^_^"><meta property="og:description" content="一、本地创建Hexo博客框架1、搭建所需环境Hexo官网地址：https:&#x2F;&#x2F;hexo.io&#x2F;上都对所需环境、版本信息都做了介绍，这里不过多介绍。2、配置本地仓库与远程仓库的ssh key打开终端，输入cd ~&#x2F;.ssh 查看是否有id_rsa 以及id_rsa.pub 文件，如果有或者自己已经配过。此项可以跳过。如果没有，现在开始创建新的• 打开终端，输入cd ~&#x2F;.ssh• 在ssh文件目录下"><meta property="og:image" content="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg"><meta property="article:published_time" content="2020-08-27T10:13:29.000Z"><meta property="article:modified_time" content="2020-08-28T17:08:33.132Z"><meta name="twitter:card" content="summary"><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#000')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff')
+  }
+}
+
+var getCookies = function (name) {
+  const value = `; ${document.cookie}`
+  const parts = value.split(`; ${name}=`)
+  if (parts.length === 2) return parts.pop().split(';').shift()
+}
+
+var autoChangeMode = 'false'
+var t = getCookies('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      console.log('You specified no preference for a color scheme or your browser does not support it. I Schedule dark mode during night time.')
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (Cookies.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  bookmark: {
+    message_prev: 'Press',
+    message_next: 'to bookmark this page'
+  },
+  runtime_unit: 'days',
+  runtime: false,
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  highlightCopy: true,
+  highlightLang: true,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false    
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: false,
+  postUpdate: '2020-08-29 01:08:33'
+}</script><noscript><style>
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><meta name="generator" content="Hexo 5.1.1"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="/img/avatar.png" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">3</div></a></div></div></div><hr/></div></div><div id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg)"><nav id="nav"><span class="pull-left" id="blog_name"><a class="blog_title" id="site-name" href="/">代码里有无尽的乐趣 ^_^</a></span><span class="pull-right menus"><span class="toggle-menu close"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">my-first-blog</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2020-08-27T10:13:29.000Z" title="Created 2020-08-27 18:13:29">2020-08-27</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2020-08-28T17:08:33.132Z" title="Updated 2020-08-29 01:08:33">2020-08-29</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><p>一、本地创建Hexo博客框架<br>1、搭建所需环境<br>Hexo官网地址：<a target="_blank" rel="noopener" href="https://hexo.io/%E4%B8%8A%E9%83%BD%E5%AF%B9%E6%89%80%E9%9C%80%E7%8E%AF%E5%A2%83%E3%80%81%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF%E9%83%BD%E5%81%9A%E4%BA%86%E4%BB%8B%E7%BB%8D%EF%BC%8C%E8%BF%99%E9%87%8C%E4%B8%8D%E8%BF%87%E5%A4%9A%E4%BB%8B%E7%BB%8D%E3%80%82">https://hexo.io/上都对所需环境、版本信息都做了介绍，这里不过多介绍。</a><br>2、配置本地仓库与远程仓库的ssh key<br>打开终端，输入cd ~/.ssh 查看是否有id_rsa 以及id_rsa.pub 文件，如果有或者自己已经配过。此项可以跳过。如果没有，现在开始创建新的<br>• 打开终端，输入cd ~/.ssh<br>• 在ssh文件目录下执行 ssh-keygen -t rsa -C “<a href="mailto:&#121;&#x6f;&#117;&#x72;&#110;&#97;&#x6d;&#x65;&#64;&#120;&#120;&#x2e;&#x63;&#111;&#x6d;">&#121;&#x6f;&#117;&#x72;&#110;&#97;&#x6d;&#x65;&#64;&#120;&#120;&#x2e;&#x63;&#111;&#x6d;</a>  此处的邮箱地址换成你自己的<br>• 点击后，箭头处填写生成的公钥以及私钥的文件名，如果只配置一个ssh key ,就直接点击回车选择默认，<br>• 接下来的两项也直接回车选择默认<br>•<br>这样，SSH key就生成成功了，现在我们需要使用这个ssh key<br>• 使用ssh-agent代理管理git私钥<br>    添加本地私钥：ssh-add ~/.ssh/刚才生成的公钥的名字<br>• 继续在终端输入cat ~/.ssh/刚才生成的公钥的名字（默认是id_rsa.pub）如果你创建的时候起了别的名字，这里就输入刚才的名字。然后点击回车，终端内就会显示出公钥的内容（很长一段,以ssh-rsa开头）<br>• 复制这段信息，打开github，点击头像选择setting<br>• 在左边的导航选项内选择SSH and GPG keys选项，选择上面的New SSH key<br>• 给这个SSH key起个名字，以便区分，因为不同的电脑需要配置不同ssh key，然后将刚才复制的公钥信息粘贴在key内，点击 Add ssh key. 这样就配置成功了<br>•<br>• 在终端输入 ssh -T <a href="mailto:&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;">&#103;&#x69;&#x74;&#x40;&#103;&#x69;&#x74;&#x68;&#x75;&#98;&#x2e;&#99;&#x6f;&#109;</a> 检测是否配置成功，如下就表示配置成功<br>如果中途哪一步出现了问题，可以在.ssh文件夹下干掉生成的文件，重新开始<br>3、创建博客仓库<br>点击 Create respository 就创建成功了  😃<br>• 使用SSH将项目克隆到本地，并初始化git仓库git init  此时默认在master 分支<br>• 因为github部署博客的编译后的代码默认生成到master分支，所以我们将项目的源码放置在一个新的blog分支，执行git checkeout -b blog 创建并切换到blog分支<br>二、生成博客项目<br>1、项目生成<br>1&gt;、安装生成项目的脚手架工具：npm install hexo-cli -g<br>2&gt;、生成项目hexo init 项目名<br>2、运行项目<br>1&gt;、进入到刚才创建的项目下，使用hexo s (hexo server的缩写)就可启动项目，本地浏览器打开localhost:4000就可查看到我们新创建的hexo项目<br>如果默认的4000端口被占用，可使用 hexo s -port 端口号 来启动项目，并在浏览器使用对应的端口来访问<br>2&gt;、安装完成后，指定文件夹的目录如下：<br>├── _config.yml<br>├── package.json<br>├── scaffolds<br>├── source<br>|   ├── _drafts<br>|   └── _posts<br>└── themes<br>其中_config.yml文件用于存放网站的配置信息，你可以在此配置大部分的参数；scaffolds是存放模板的文件夹，当新建文章时，Hexo会根据scaffold来建立文件；source是资源文件夹，用于存放用户资源，themes是主题文件夹，存放博客主题，Hexo 会根据主题来生成静态页面<br>三、部署到gtihub<br>安装部署到github的工具插件：npm install hexo-deployer-git –save<br>_config.yml是重要的网站的配置信息，具体配置详见官网<a target="_blank" rel="noopener" href="https://hexo.io/docs/configuration">https://hexo.io/docs/configuration</a><br>因为我们要将编译后的代码放置在master分支下，所以我们需要修改_config.yml文件下的deploy<br>deploy:<br>  type: ‘git’<br>  repo: 存放博客项目的github仓库地址，建议使用ssh地址<br>  branch: master  需要将博客的代码编译到那个分支，此处就写对应分支的分支名<br>修改完成后，使用hexo的命令</p>
+<ol>
+<li>hexo clean 清除之前的缓存</li>
+<li>hexo generate 编译项目代码</li>
+<li>hexo deploy 将编译后的代码根据_congin.yml内的deploy推送到指定仓库的制定分支<br>第二步和第三部可以一块 执行 hexo g -d<br>此时就可在https://你的博客仓库名  (例如我的<a target="_blank" rel="noopener" href="https://gtliangming.github.io/)%E6%9F%A5%E7%9C%8B%E5%88%B0%E4%BD%A0%E6%96%B0%E5%BB%BA%E7%9A%84%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%BA%86">https://gtliangming.github.io/)查看到你新建的的博客了</a><br>可能会有一定的延迟，稍等下刷新就有了<br>💐至此，我们的博客就搭建完成了，至于后面的主题以及美化等的细节问题，期待下一篇吧！！！<br>不知道细心的大家发现了问题了吗？我们博客是更新了，但是我们的本地blog分支的代码更新该没有提交，这就表示我们每次执行完hexo的命令部署完博客后，还要Git三部曲提交我们blog分支的代码。好奇的同学就有问题了，能不能一步解决呢，宾果！，关注下一篇哦（Tracis cI实现自动部署hexo博客至github）</li>
+</ol>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">Bruce Liang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="http://yoursite.com/2020/08/27/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">http://yoursite.com/2020/08/27/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/08/28/hello-world/"><img class="prev-cover" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Hello World</div></div></a></div><div class="next-post pull-right"><a href="/2020/08/27/my-first-blog/"><img class="next-cover" data-lazy-src="https://i.loli.net/2020/05/01/gkihqEjXxJ5UZ1C.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">my-first-blog</div></div></a></div></nav></article></main><footer id="footer" data-type="color"><div id="footer-wrap"><div class="copyright">&copy;2020 By Bruce Liang</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="font_plus" type="button" title="Increase Font Size"><i class="fas fa-plus"></i></button><button id="font_minus" type="button" title="Decrease Font Size"><i class="fas fa-minus"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js" async></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>

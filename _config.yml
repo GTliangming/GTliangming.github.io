@@ -3,11 +3,11 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 代码里有无尽的乐趣 ^_^
 subtitle: ''
-description: ''
-keywords:
-author: John Doe
+description: '雪融化会变成什么呢？...是春天呢！'
+keywords: web
+author: Bruce Liang
 language: en
 timezone: ''
 
@@ -98,7 +98,7 @@ ignore:
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: materialized
+theme: butterfly
 
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
