@@ -49,7 +49,7 @@ install:
   - npm i
 
 script:
-  - hexo clean
+  # - hexo clean
   - hexo generate # generate static files
 after_success:
   - cd ./public
