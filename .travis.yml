@@ -54,7 +54,7 @@ script:
   - hexo generate # generate static files
   - hexo deploy
 after_success:
-  # - cd ./public
+  - cd ./public
   - git init
   - git add .
   - git commit -m "Travis CI Auto Builder"
