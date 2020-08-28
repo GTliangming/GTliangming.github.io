@@ -37,7 +37,8 @@
 
 language: node_js #设置语言
 
-node_js: "10.16.3" #设置语言版本
+node_js: 
+  - "10.16.3" #设置语言版本
 
 cache:
   directories:
