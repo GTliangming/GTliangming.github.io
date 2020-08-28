@@ -1,32 +1,54 @@
 
-# 配置语言及相应版本
+# # 配置语言及相应版本
+# language: node_js
+# node_js: 12
+
+# cache:
+#   directories:
+#     - node_modules
+
+# # 配置环境
+# before_install:
+#   # 刚才生成的解密信息
+#   - openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv
+#   -in id_rsa.enc -out id_rsa -d
+#   # 改变文件权限
+#   - chmod 600 ~/.ssh/github_rsa 
+#   # 配置ssh
+#   - eval $(ssh-agent)
+#   - ssh-add ~/.ssh/github_rsa
+#   - cp .travis/ssh_config ~/.ssh/config
+  
+#   - git config --global user.name 'lm'
+#   - git config --global user.email 'lmzs124083@163.com'
+  
+# install:
+# - npm install hexo-cli -g
+# # - npm install hexo -g
+# - npm install
+
+# # 部署的命令
+# script:
+# - npm run deploy  
+
+# branches:
+#   only:
+#     - blog  
+sudo: false
 language: node_js
-node_js: 
-
-# 配置环境
-before_install:
-  # 刚才生成的解密信息
-  - openssl aes-256-cbc -K $encrypted_f217180e22ee_key -iv $encrypted_f217180e22ee_iv
-  -in id_rsa.enc -out id_rsa -d
-  # 改变文件权限
-  - chmod 600 ~/.ssh/id_rsa 
-  # 配置ssh
-  - eval $(ssh-agent)
-  - ssh-add ~/.ssh/github_rsa
-  - cp .travis/ssh_config ~/.ssh/config
-  
-  - git config --global user.name 'lm'
-  - git config --global user.email 'lmzs124083@163.com'
-  
-install:
-- npm install hexo-cli -g
-# - npm install hexo -g
-- npm install
-
-# 部署的命令
-script:
-- npm run deploy  
-
+node_js:
+  - 12
+cache: npm
 branches:
   only:
-    - blog  
+    - blog # build master branch only
+script:
+  - hexo generate
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GH_TOKEN
+  keep-history: true
+  on:
+    branch: master
+  local-dir: public
