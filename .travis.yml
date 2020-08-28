@@ -53,6 +53,7 @@ script:
   - hexo generate # generate static files
 after_success:
   - cd ./public
+  - ls
   - git init
   - git config --global user.name "liangming"
   - git config --global user.email "lmzs124083@163.com"
