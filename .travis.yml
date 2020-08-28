@@ -55,7 +55,7 @@ script:
 after_success:
   # - cd ./public
   - git init
-  - git add --all .
+  - git add .
   - git commit -m "Travis CI Auto Builder"
   - git push --quiet --force https://$GH_TOKEN@github.com/GTliangming/GTliangming.github.io.git master
 
