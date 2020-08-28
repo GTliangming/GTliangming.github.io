@@ -35,29 +35,31 @@
 #   only:
 #     - blog  
 
-language: node_js #设置语言
-
-node_js: 
-  - "10.16.3" #设置语言版本
-
+sudo: false
+language: node_js
+node_js:
+  - 10 # use nodejs v10 LTS
 cache:
   directories:
-    - node_modules #缓存依赖
-
-# S: Build Lifecycle
-install:
+    - node_modules
+before_install:
+  - git config --global user.name "liangming"
+  - git config --global user.email "lmzs124083@163.com"
   - npm install -g hexo-cli
-  - npm install
+install:
+  - npm i
 
 script:
   - hexo clean
-  - hexo g
-  - hexo algolia
-  - hexo deploy
-  
+  - hexo generate # generate static files
+after_success:
+  - cd ./public
+  - git init
+  - git add --all .
+  - git commit -m "Travis CI Auto Builder"
+  - git push --quiet --force https://$GH_TOKEN@github.com/<your github username>/<your github username>.github.io.git master
 
 # 只有指定的分支提交时才会运行脚本
 branches:
   only:
     - blog
-    
