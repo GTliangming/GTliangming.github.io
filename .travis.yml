@@ -45,7 +45,7 @@ cache:
 before_install:
   - npm install -g hexo-cli
   - npm install -g hexo
-  - npm install hexo-deployer-git@2.1.0 --save
+  - npm install hexo-renderer-pug hexo-renderer-stylus --save
 install:
   - npm i
 
