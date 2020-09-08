@@ -2,21 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://yoursite.com/2020/08/27/cketkd0680002bxnmb2vhe1rw/</loc>
+    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5d0001manm2vzedyvj/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/08/27/cketkd0660001bxnm15ll8bmn/</loc>
+    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5l0006manm2555gckz/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/2020/09/08/cketkd05m0000bxnmdadz7mbl/</loc>
+    <loc>http://gtliangming.github.io/2020/09/08/cketp9r4y0000manm1o8cbnjv/</loc>
+    
+    <lastmod>2020-09-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5g0003manma7p0dd3f/</loc>
+    
+    <lastmod>2020-09-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5f0002manmfpl8atds/</loc>
+    
+    <lastmod>2020-09-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5m0007manmhrbq3obd/</loc>
+    
+    <lastmod>2020-09-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5j0005manmaagq9sxx/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
@@ -24,7 +52,7 @@
   
 
   <url>
-    <loc>http://yoursite.com/</loc>
+    <loc>http://gtliangming.github.io/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
@@ -32,12 +60,40 @@
 
   
   <url>
-    <loc>http://yoursite.com/tags/tag/</loc>
+    <loc>http://gtliangming.github.io/tags/mongodb/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/tags/TypeScript/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/tags/WebPack/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/tags/node-js/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
 
+  
+  <url>
+    <loc>http://gtliangming.github.io/categories/git/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
 </urlset>
