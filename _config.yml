@@ -3,7 +3,7 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 代码里有无尽的乐趣 ^_^
+title: 小明同学的博客
 subtitle: ''
 description: ''
 keywords: web
@@ -13,7 +13,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://gtliangming.github.io
 root: /
 permalink: :year/:month/:day/:id/
 permalink_defaults:
