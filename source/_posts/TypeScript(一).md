@@ -2,7 +2,8 @@
 title: TypeScript(一)
 date: 2020-09-08 16:30:00
 tags: TypeScript
-cover: http://www.lmwebs.top/img/nanan.jpg
+cover: 
+categories: TypeScript
 # 版权信息
 # copyright_author: xxxx
 # copyright_author_href: https://xxxxxx.com

@@ -1,8 +1,9 @@
 ---
 title: 将node.js搭建的express项目如何部署到服务器上
 date: 2020-09-08 15:30:00
-tags: node.js
-cover: http://www.lmwebs.top/img/nanan.jpg
+tags: node.js express 服务器部署
+cover: 
+categories: node.js
 ---
 
 
