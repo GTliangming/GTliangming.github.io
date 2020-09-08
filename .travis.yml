@@ -41,13 +41,13 @@ node_js:
   - 10 # use nodejs v10 LTS
 cache:
   directories:
-    # - node_modules
+    - node_modules
 before_install:
-  # - npm install -g hexo-cli
-  # - npm install -g hexo
+  - npm install -g hexo-cli
+  - npm install -g hexo
   # - npm install hexo-renderer-pug hexo-renderer-stylus --save
 install:
-  # - npm i
+  - npm i
 
 script:
   # - hexo clean
