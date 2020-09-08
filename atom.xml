@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>代码里有无尽的乐趣 ^_^</title>
+  
+  
+  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-09-08T05:41:56.182Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Bruce Liang</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2020/09/08/cketjvt780000yznm6bid1d5d/"/>
+    <id>http://yoursite.com/2020/09/08/cketjvt780000yznm6bid1d5d/</id>
+    <published>2020-09-08T05:41:56.182Z</published>
+    <updated>2020-09-08T05:41:56.182Z</updated>
+    
+    <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>my-first-blog</title>
+    <link href="http://yoursite.com/2020/08/27/cketjvt7g0002yznm0bzl8ys1/"/>
+    <id>http://yoursite.com/2020/08/27/cketjvt7g0002yznm0bzl8ys1/</id>
+    <published>2020-08-27T10:13:29.000Z</published>
+    <updated>2020-09-08T05:48:08.818Z</updated>
+    
+    <content type="html"><![CDATA[<p>一、本地创建Hexo博客框架<br>1、搭建所需环境<br>Hexo官网地址：<a href="https://hexo.io/%E4%B8%8A%E9%83%BD%E5%AF%B9%E6%89%80%E9%9C%80%E7%8E%AF%E5%A2%83%E3%80%81%E7%89%88%E6%9C%AC%E4%BF%A1%E6%81%AF%E9%83%BD%E5%81%9A%E4%BA%86%E4%BB%8B%E7%BB%8D%EF%BC%8C%E8%BF%99%E9%87%8C%E4%B8%8D%E8%BF%87%E5%A4%9A%E4%BB%8B%E7%BB%8D%E3%80%82">https://hexo.io/上都对所需环境、版本信息都做了介绍，这里不过多介绍。</a><br>2、配置本地仓库与远程仓库的ssh key<br>打开终端，输入cd ~/.ssh 查看是否有id_rsa 以及id_rsa.pub 文件，如果有或者自己已经配过。此项可以跳过。如果没有，现在开始创建新的<br>• 打开终端，输入cd ~/.ssh<br>• 在ssh文件目录下执行 ssh-keygen -t rsa -C “<a href="mailto:&#121;&#x6f;&#x75;&#114;&#x6e;&#x61;&#109;&#101;&#64;&#x78;&#x78;&#46;&#x63;&#x6f;&#x6d;">&#121;&#x6f;&#x75;&#114;&#x6e;&#x61;&#109;&#101;&#64;&#x78;&#x78;&#46;&#x63;&#x6f;&#x6d;</a>  此处的邮箱地址换成你自己的<br>• 点击后，箭头处填写生成的公钥以及私钥的文件名，如果只配置一个ssh key ,就直接点击回车选择默认，<br>• 接下来的两项也直接回车选择默认<br>•<br>这样，SSH key就生成成功了，现在我们需要使用这个ssh key<br>• 使用ssh-agent代理管理git私钥<br>    添加本地私钥：ssh-add ~/.ssh/刚才生成的公钥的名字<br>• 继续在终端输入cat ~/.ssh/刚才生成的公钥的名字（默认是id_rsa.pub）如果你创建的时候起了别的名字，这里就输入刚才的名字。然后点击回车，终端内就会显示出公钥的内容（很长一段,以ssh-rsa开头）<br>• 复制这段信息，打开github，点击头像选择setting<br>• 在左边的导航选项内选择SSH and GPG keys选项，选择上面的New SSH key<br>• 给这个SSH key起个名字，以便区分，因为不同的电脑需要配置不同ssh key，然后将刚才复制的公钥信息粘贴在key内，点击 Add ssh key. 这样就配置成功了<br>•<br>• 在终端输入 ssh -T <a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#x74;&#104;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a> 检测是否配置成功，如下就表示配置成功<br>如果中途哪一步出现了问题，可以在.ssh文件夹下干掉生成的文件，重新开始<br>3、创建博客仓库<br>点击 Create respository 就创建成功了  😃<br>• 使用SSH将项目克隆到本地，并初始化git仓库git init  此时默认在master 分支<br>• 因为github部署博客的编译后的代码默认生成到master分支，所以我们将项目的源码放置在一个新的blog分支，执行git checkeout -b blog 创建并切换到blog分支<br>二、生成博客项目<br>1、项目生成<br>1&gt;、安装生成项目的脚手架工具：npm install hexo-cli -g<br>2&gt;、生成项目hexo init 项目名<br>2、运行项目<br>1&gt;、进入到刚才创建的项目下，使用hexo s (hexo server的缩写)就可启动项目，本地浏览器打开localhost:4000就可查看到我们新创建的hexo项目<br>如果默认的4000端口被占用，可使用 hexo s -port 端口号 来启动项目，并在浏览器使用对应的端口来访问<br>2&gt;、安装完成后，指定文件夹的目录如下：<br>├── _config.yml<br>├── package.json<br>├── scaffolds<br>├── source<br>|   ├── _drafts<br>|   └── _posts<br>└── themes<br>其中_config.yml文件用于存放网站的配置信息，你可以在此配置大部分的参数；scaffolds是存放模板的文件夹，当新建文章时，Hexo会根据scaffold来建立文件；source是资源文件夹，用于存放用户资源，themes是主题文件夹，存放博客主题，Hexo 会根据主题来生成静态页面<br>三、部署到gtihub<br>安装部署到github的工具插件：npm install hexo-deployer-git –save<br>_config.yml是重要的网站的配置信息，具体配置详见官网<a href="https://hexo.io/docs/configuration">https://hexo.io/docs/configuration</a><br>因为我们要将编译后的代码放置在master分支下，所以我们需要修改_config.yml文件下的deploy<br>deploy:<br>  type: ‘git’<br>  repo: 存放博客项目的github仓库地址，建议使用ssh地址<br>  branch: master  需要将博客的代码编译到那个分支，此处就写对应分支的分支名<br>修改完成后，使用hexo的命令</p><ol><li>hexo clean 清除之前的缓存</li><li>hexo generate 编译项目代码</li><li>hexo deploy 将编译后的代码根据_congin.yml内的deploy推送到指定仓库的制定分支<br>第二步和第三部可以一块 执行 hexo g -d<br>此时就可在https://你的博客仓库名  (例如我的<a href="https://gtliangming.github.io/)%E6%9F%A5%E7%9C%8B%E5%88%B0%E4%BD%A0%E6%96%B0%E5%BB%BA%E7%9A%84%E7%9A%84%E5%8D%9A%E5%AE%A2%E4%BA%86">https://gtliangming.github.io/)查看到你新建的的博客了</a><br>可能会有一定的延迟，稍等下刷新就有了<br>💐至此，我们的博客就搭建完成了，至于后面的主题以及美化等的细节问题，期待下一篇吧！！！<br>不知道细心的大家发现了问题了吗？我们博客是更新了，但是我们的本地blog分支的代码更新该没有提交，这就表示我们每次执行完hexo的命令部署完博客后，还要Git三部曲提交我们blog分支的代码。好奇的同学就有问题了，能不能一步解决呢，宾果！，关注下一篇哦（Tracis cI实现自动部署hexo博客至github）</li></ol>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;p&gt;一、本地创建Hexo博客框架&lt;br&gt;1、搭建所需环境&lt;br&gt;Hexo官网地址：&lt;a href=&quot;https://hexo.io/%E4%B8%8A%E9%83%BD%E5%AF%B9%E6%89%80%E9%9C%80%E7%8E%AF%E5%A2%83%E3%80%81%</summary>
+      
+    
+    
+    
+    
+    <category term="tag" scheme="http://yoursite.com/tags/tag/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>my-first-blog</title>
+    <link href="http://yoursite.com/2020/08/27/cketjvt7e0001yznm5e9i1ygc/"/>
+    <id>http://yoursite.com/2020/08/27/cketjvt7e0001yznm5e9i1ygc/</id>
+    <published>2020-08-27T06:52:46.000Z</published>
+    <updated>2020-09-08T05:48:08.930Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="safmaoskfsaf"><a href="#safmaoskfsaf" class="headerlink" title="safmaoskfsaf"></a>safmaoskfsaf</h1>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h1 id=&quot;safmaoskfsaf&quot;&gt;&lt;a href=&quot;#safmaoskfsaf&quot; class=&quot;headerlink&quot; title=&quot;safmaoskfsaf&quot;&gt;&lt;/a&gt;safmaoskfsaf&lt;/h1&gt;</summary>
+      
+    
+    
+    
+    
+  </entry>
+  
+</feed>
