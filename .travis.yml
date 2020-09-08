@@ -43,15 +43,15 @@ cache:
   directories:
     - node_modules
 before_install:
-  - npm install -g hexo-cli
-  - npm install -g hexo
-  - npm install hexo-renderer-pug hexo-renderer-stylus --save
+  # - npm install -g hexo-cli
+  # - npm install -g hexo
+  # - npm install hexo-renderer-pug hexo-renderer-stylus --save
 install:
   - npm i
 
 script:
-  - hexo clean
-  - hexo generate # generate static files
+  # - hexo clean
+  # - hexo generate # generate static files
 after_success:
   - cd ./public
   - ls
