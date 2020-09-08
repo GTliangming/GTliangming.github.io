@@ -2,49 +2,49 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5d0001manm2vzedyvj/</loc>
+    <loc>http://gtliangming.github.io/2020/09/08/cketqougx000a7inmagk983zd/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5l0006manm2555gckz/</loc>
+    <loc>http://gtliangming.github.io/2020/09/08/cketqougy000b7inm7lg43t3s/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gtliangming.github.io/2020/09/08/cketp9r4y0000manm1o8cbnjv/</loc>
+    <loc>http://gtliangming.github.io/2020/09/08/cketqougg00007inm0owd6mew/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5g0003manma7p0dd3f/</loc>
+    <loc>http://gtliangming.github.io/2020/09/08/cketqougs00047inm88ra0lll/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5f0002manmfpl8atds/</loc>
+    <loc>http://gtliangming.github.io/2020/09/08/cketqougt00057inm3faz62wk/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5m0007manmhrbq3obd/</loc>
+    <loc>http://gtliangming.github.io/2020/09/08/cketqougm00017inmdz3tabei/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
   </url>
   
   <url>
-    <loc>http://gtliangming.github.io/2020/09/08/cketp9r5j0005manmaagq9sxx/</loc>
+    <loc>http://gtliangming.github.io/2020/09/08/cketqougu00067inmfvyu1h7c/</loc>
     
     <lastmod>2020-09-08</lastmod>
     
@@ -58,6 +58,13 @@
     <priority>1.0</priority>
   </url>
 
+  
+  <url>
+    <loc>http://gtliangming.github.io/tags/hexo-github/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>http://gtliangming.github.io/tags/mongodb/</loc>
@@ -81,7 +88,14 @@
   </url>
   
   <url>
-    <loc>http://gtliangming.github.io/tags/node-js/</loc>
+    <loc>http://gtliangming.github.io/tags/git/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/tags/node-js-express-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -90,7 +104,35 @@
 
   
   <url>
+    <loc>http://gtliangming.github.io/categories/hexo/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/categories/mongodb/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/categories/TypeScript/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://gtliangming.github.io/categories/git/</loc>
+    <lastmod>2020-09-08</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://gtliangming.github.io/categories/node-js/</loc>
     <lastmod>2020-09-08</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
