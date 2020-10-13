@@ -104,5 +104,5 @@ theme: butterfly
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: git@github.com:GTliangming/GTliangming.github.io.git
+  repo: root@123.56.31.193:/home/git/hexoBlog
   branch: master
