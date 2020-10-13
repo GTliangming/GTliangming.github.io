@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WebPack的配置(一) | 小明同学的博客</title><meta name="description" content="一、webpack.config.js1、打包模式 mode在打包时配置mode是为了告知 webpack 使用相应模式的内置优化 mode的模式分别有三种：we  Production   生产环境打包 默认值 Development  开发环境打包 None  不使用任何默认优化选项  Production与Development的区别：  生产模式会把打包好后的代码进行压缩，可阅读性不好，但"><meta name="keywords" content="WebPack"><meta name="author" content="Bruce Liang"><meta name="copyright" content="Bruce Liang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://gtliangming.github.io/2020/09/08/ckg7r5wlx0006sknm7d9s6ws8/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="WebPack的配置(一)"><meta property="og:url" content="http://gtliangming.github.io/2020/09/08/ckg7r5wlx0006sknm7d9s6ws8/"><meta property="og:site_name" content="小明同学的博客"><meta property="og:description" content="一、webpack.config.js1、打包模式 mode在打包时配置mode是为了告知 webpack 使用相应模式的内置优化 mode的模式分别有三种：we  Production   生产环境打包 默认值 Development  开发环境打包 None  不使用任何默认优化选项  Production与Development的区别：  生产模式会把打包好后的代码进行压缩，可阅读性不好，但"><meta property="og:image" content="http://gtliangming.github.io/img/cover01.jpg"><meta property="article:published_time" content="2020-09-08T07:00:00.000Z"><meta property="article:modified_time" content="2020-09-09T05:59:31.747Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-09-09 13:59:31'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
+
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="小明同学的博客" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=571311353,3094509045&amp;fm=26&amp;gp=0.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">8</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">6</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">5</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81webpack-config-js"><span class="toc-number">1.</span> <span class="toc-text">一、webpack.config.js</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1%E3%80%81%E6%89%93%E5%8C%85%E6%A8%A1%E5%BC%8F-mode"><span class="toc-number">1.1.</span> <span class="toc-text">1、打包模式 mode</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2%E3%80%81%E5%85%A5%E5%8F%A3-entry"><span class="toc-number">1.2.</span> <span class="toc-text">2、入口  entry</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%87%BA%E5%8F%A3-output"><span class="toc-number">1.3.</span> <span class="toc-text">3、出口 output</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4%E3%80%81-%E6%A8%A1%E5%9D%97"><span class="toc-number">1.4.</span> <span class="toc-text">4、 模块</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/./img/cover01.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小明同学的博客</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">WebPack的配置(一)</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-08T07:00:00.000Z" title="发表于 2020-09-08 15:00:00">2020-09-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-09-09T05:59:31.747Z" title="更新于 2020-09-09 13:59:31">2020-09-09</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h3 id="一、webpack-config-js"><a href="#一、webpack-config-js" class="headerlink" title="一、webpack.config.js"></a>一、webpack.config.js</h3><h4 id="1、打包模式-mode"><a href="#1、打包模式-mode" class="headerlink" title="1、打包模式 mode"></a>1、打包模式 mode</h4><p>在打包时配置mode是为了告知 webpack 使用相应模式的内置优化</p>
+<p>mode的模式分别有三种：we</p>
+<ul>
+<li>Production   生产环境打包 默认值</li>
+<li>Development  开发环境打包</li>
+<li>None  不使用任何默认优化选项</li>
+</ul>
+<p>Production与Development的区别：</p>
+<ul>
+<li>生产模式会把打包好后的代码进行压缩，可阅读性不好，但是代码体积小</li>
+<li>开发模式不会压缩代码，可阅读性好，但是代码体积大</li>
+<li>开发模式一些没有依赖的方法 变量 文件会保留，生产模式会移除</li>
+</ul>
+<h4 id="2、入口-entry"><a href="#2、入口-entry" class="headerlink" title="2、入口  entry"></a>2、入口  entry</h4><p>入口起点告诉 webpack 从哪里开始，并根据依赖关系图确定需要打包的文件内容</p>
+<p><code>entry</code>接受三种形式的值：字符串，数组和对象</p>
+<ul>
+<li><p>对象</p>
+<p>基本形式为：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">entyr:&#123;</span><br><span class="line">	&lt;key&gt;:<span class="xml"><span class="tag">&lt;<span class="name">value</span>&gt;</span></span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml">// 每一个属性对都对应一个入口文件，适合多页面打包配置</span></span><br></pre></td></tr></table></figure>
+
+
+
+</li>
+</ul>
+<p>   <strong>key的值可以为比较简单的字符串，此时key对应出口文件output.filename配置中的[name]变量</strong></p>
+  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例如 </span></span><br><span class="line">entry: &#123;</span><br><span class="line">    <span class="string">&#x27;app-entry&#x27;</span>: <span class="string">&#x27;./app.js&#x27;</span></span><br><span class="line">&#125;,</span><br><span class="line">output: &#123;</span><br><span class="line">    path: <span class="string">&#x27;./dist&#x27;</span>,</span><br><span class="line">    filename: <span class="string">&#x27;[name].js&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 则对./app.js打包完成后生成的文件是在dist文件夹下的app-entry.js文件</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>  <strong>key的值也可以为路径字符串，此时webpack会自动生成路径目录，并将路径的最后作为[name]</strong></p>
+  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">//例如</span></span><br><span class="line">entry: &#123;</span><br><span class="line">    <span class="string">&#x27;/example/entry&#x27;</span>: <span class="string">&#x27;./deep-app.js&#x27;</span>,</span><br><span class="line">&#125;,</span><br><span class="line">output: &#123;</span><br><span class="line">    path: <span class="string">&#x27;./dist&#x27;</span>,</span><br><span class="line">    filename: <span class="string">&#x27;[name].js&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 则对./app.js打包完成后生成的文件是在dist文件夹下的example文件夹下的entry.js文件</span></span><br></pre></td></tr></table></figure>
+
+<p>  <strong>value如果是字符串，那就必须是合理的node require函数参数字符串。</strong></p>
+<p>  <strong>比如文件路径：’./app.js’       (require(‘./app.js’))；</strong></p>
+<p>  <strong>比如安装的npm模块：’lodash’       (require(‘lodash’))</strong></p>
+  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    <span class="string">&#x27;my-lodash&#x27;</span>: <span class="string">&#x27;lodash&#x27;</span></span><br><span class="line">&#125;,</span><br><span class="line">output: &#123;</span><br><span class="line">    path: <span class="string">&#x27;./output&#x27;</span>,</span><br><span class="line">    filename: <span class="string">&#x27;[name].js&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>  <strong>value如果是数组，则数组中元素需要是上面描述的合理字符串值。数组中的文件一般是没有相互依赖关系的，但是又处于某些原因需要将它们打包在一起</strong></p>
+  <figure class="highlight js"><table><tr><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    vendor: [<span class="string">&#x27;jquery&#x27;</span>, <span class="string">&#x27;lodash&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>字符串</p>
+<p><code>entry: &#39;./app.js&#39;</code>  等价于下面的对象形式：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    main: <span class="string">&#x27;./app.js&#x27;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>数组</p>
+<p><code>entry: [&#39;./index.js&#39;, &#39;lodash&#39;]</code> 等价于下面的对象形式：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">entry: &#123;</span><br><span class="line">    main: [<span class="string">&#x27;./app.js&#x27;</span>, <span class="string">&#x27;lodash&#x27;</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="3、出口-output"><a href="#3、出口-output" class="headerlink" title="3、出口 output"></a>3、出口 output</h4><p>告诉webpack怎样存储输出结果以及存储到哪里,指定每个输出文件的名称。在这里不能指定为绝对路径！</p>
+<p>基本形式：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">output:&#123;</span><br><span class="line">	path:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  publicPath:<span class="string">&#x27;&#x27;</span>,</span><br><span class="line">  filename:<span class="string">&#x27;&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// path:所有输出文件的目标路径;打包后文件在硬盘中的存储位置。</span></span><br><span class="line"><span class="comment">// publicPath:输出解析文件的目录，指定资源文件引用的目录 ，打包后浏览器访问服务时的 url 路径中通用的一部分。</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>Path 仅仅告诉Webpack结果存储在哪里</p>
+</li>
+<li><p>publicPath 用于在生产模式下更新内嵌到css、html文件里的url值</p>
+<p><strong>output.publicPath 是很重要的选项。如果指定了一个错误的值，则在加载这些资源时会收到 404 错误</strong></p>
+</li>
+</ul>
+<p>注 ：在使用html-webpack-plugin 生成index.html时，publicPath是可以不用配置的。</p>
+<p>​    <strong>output的输出hash值</strong></p>
+<ul>
+<li><p>[hash] </p>
+<p>每个文件的hash都一样，文件的hash为打包的hash。</p>
+</li>
+<li><p>[chunkhash] </p>
+<p>使用文件的hash都不一样，也与打包hash不一样</p>
+</li>
+</ul>
+<h4 id="4、-模块"><a href="#4、-模块" class="headerlink" title="4、 模块"></a>4、 模块</h4><p>在模块化编程中，开发者将程序分解成离散功能块，并称之为模块。每个模块具有比完整程序更小的接触面，使得校验、调试、测试轻而易举。 精心编写的模块提供了可靠的抽象和封装界限，使得应用程序中每个模块都具有条理清楚的设计和明确的目的。</p>
+<ul>
+<li><p>配置 Loader</p>
+<p>rules 配置模块的读取和解析规则，通常用来配置 Loader。其类型是一个数组，数组里每一项都描述了如何去处理部分文件。 配置一项 <code>rules</code> 时大致通过以下方式：</p>
+<ol>
+<li>条件匹配：通过 test 、 include 、 exclude 三个配置项来命中 Loader 要应用规则的文件。</li>
+<li>应用规则：对选中后的文件通过 <code>use</code> 配置项来应用 Loader，可以只应用一个 Loader 或者按照从后往前的顺序应用一组 Loader，同时还可以分别给 Loader 传入参数。</li>
+<li>重置顺序：一组 Loader 的执行顺序默认是从右到左执行，通过 <code>enforce</code> 选项可以让其中一个 Loader 的执行顺序放到最前或者最后</li>
+</ol>
+</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 命中 css 文件</span></span><br><span class="line">      test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">      <span class="comment">// 用 babel-loader 转换 css 文件</span></span><br><span class="line">      <span class="comment">// ?cacheDirectory 表示传给 babel-loader 的参数，用于缓存 babel 编译结果加快重新编译速度</span></span><br><span class="line">      use: [<span class="string">&#x27;babel-loader?cacheDirectory&#x27;</span>],</span><br><span class="line">      <span class="comment">// 只命中src目录里的js文件，加快 Webpack 搜索速度</span></span><br><span class="line">      include: path.resolve(__dirname, <span class="string">&#x27;src&#x27;</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 命中 SCSS 文件</span></span><br><span class="line">      test: <span class="regexp">/\.scss$/</span>,</span><br><span class="line">      <span class="comment">// 使用一组 Loader 去处理 SCSS 文件。</span></span><br><span class="line">      <span class="comment">// 处理顺序为从后到前，即先交给 sass-loader 处理，再把结果交给 css-loader 最后再给 style-loader。</span></span><br><span class="line">      use: [<span class="string">&#x27;style-loader&#x27;</span>, <span class="string">&#x27;css-loader&#x27;</span>, <span class="string">&#x27;sass-loader&#x27;</span>],</span><br><span class="line">      <span class="comment">// 排除 node_modules 目录下的文件</span></span><br><span class="line">      exclude: path.resolve(__dirname, <span class="string">&#x27;node_modules&#x27;</span>),</span><br><span class="line">    &#125;,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// 对GIF、PNG等的文件采用 file-loader 加载</span></span><br><span class="line">      test: <span class="regexp">/\.(gif|png|jpe?g|eot|woff|ttf|svg|pdf)$/</span>,</span><br><span class="line">      use: [<span class="string">&#x27;file-loader&#x27;</span>],</span><br><span class="line">    &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当 Loader 需要传入很多参数时，你还可以通过一个 对象 来描述</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">use: [</span><br><span class="line">  &#123;</span><br><span class="line">    loader:<span class="string">&#x27;babel-loader&#x27;</span>,</span><br><span class="line">    options:&#123;</span><br><span class="line">      cacheDirectory:<span class="literal">true</span>,</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">// enforce:&#x27;post&#x27; 的含义是把该 Loader 的执行顺序放到最后</span></span><br><span class="line">    <span class="comment">// enforce 的值还可以是 pre，代表把 Loader 的执行顺序放到最前面</span></span><br><span class="line">    enforce:<span class="string">&#x27;post&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>其中的test、include、exclude都可以传入数组，数组里的每项之间是或的关系，即文件路径符合数组中的任何一个条件就会被命中</p>
+<ul>
+<li>配置 noParse</li>
+</ul>
+<p><code>noParse</code> 配置项可以让 Webpack 忽略对部分没采用模块化的文件的递归解析和处理，这样做的好处是能提高构建性能。 原因是一些库例如 jQuery 、ChartJS 它们庞大又没有采用模块化标准，让 Webpack 去解析这些文件耗时又没有意义。</p>
+<p><code>noParse</code> 是可选配置项，类型需要是 <code>RegExp</code>、<code>[RegExp]</code>、<code>function</code> 其中一个。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 使用正则表达式</span></span><br><span class="line">noParse: <span class="regexp">/jquery|chartjs/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 使用函数，从 Webpack 3.0.0 开始支持</span></span><br><span class="line">noParse: <span class="function">(<span class="params">content</span>)=&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// content 代表一个模块的文件路径</span></span><br><span class="line">  <span class="comment">// 返回 true or false</span></span><br><span class="line">  <span class="keyword">return</span> <span class="regexp">/jquery|chartjs/</span>.test(content);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//注意被忽略掉的文件里不应该包含 import 、 require 、 define 等模块化语句，不然会导致构建出的代码中包含无法在浏览器环境下执行的模块化语句。</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>配置 parser</li>
+</ul>
+<p>因为 Webpack 是以模块化的 JavaScript 文件为入口，所以内置了对模块化 JavaScript 的解析功能，支持 AMD、CommonJS、SystemJS、ES6。 <code>parser</code> 属性可以更细粒度的配置哪些模块语法要解析哪些不解析，和 <code>noParse</code> 配置项的区别在于 <code>parser</code> 可以精确到语法层面， 而 noParse 只能控制哪些文件不被解析。</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="built_in">module</span>: &#123;</span><br><span class="line">  rules: [</span><br><span class="line">    &#123;</span><br><span class="line">      test: <span class="regexp">/\.css$/</span>,</span><br><span class="line">      use: [<span class="string">&quot;style&quot;</span>, <span class="string">&quot;css&quot;</span>, <span class="string">&quot;postcss&quot;</span>],</span><br><span class="line">      parser: &#123;</span><br><span class="line">        amd: <span class="literal">false</span>, <span class="comment">// 禁用 AMD</span></span><br><span class="line">        commonjs: <span class="literal">false</span>, <span class="comment">// 禁用 CommonJS</span></span><br><span class="line">        system: <span class="literal">false</span>, <span class="comment">// 禁用 SystemJS</span></span><br><span class="line">        harmony: <span class="literal">false</span>, <span class="comment">// 禁用 ES6 import/export</span></span><br><span class="line">        requireInclude: <span class="literal">false</span>, <span class="comment">// 禁用 require.include</span></span><br><span class="line">        requireEnsure: <span class="literal">false</span>, <span class="comment">// 禁用 require.ensure</span></span><br><span class="line">        requireContext: <span class="literal">false</span>, <span class="comment">// 禁用 require.context</span></span><br><span class="line">        browserify: <span class="literal">false</span>, <span class="comment">// 禁用 browserify</span></span><br><span class="line">        requireJs: <span class="literal">false</span>, <span class="comment">// 禁用 requirejs</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Bruce Liang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://gtliangming.github.io/2020/09/08/ckg7r5wlx0006sknm7d9s6ws8/">http://gtliangming.github.io/2020/09/08/ckg7r5wlx0006sknm7d9s6ws8/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://gtliangming.github.io" target="_blank">小明同学的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/WebPack/">WebPack</a></div><div class="post_share"><div class="social-share" data-image="/./img/cover01.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/09/08/ckg7r5wm4000fsknm9ivvd4y3/"><img class="prev-cover" data-lazy-src="/./img/cover07.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">将node.js搭建的express项目如何部署到服务器上</div></div></a></div><div class="next-post pull-right"><a href="/2020/09/08/ckg7r5wm0000asknma0v2fjdy/"><img class="next-cover" data-lazy-src="/./img/cover03.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">WebPack的配置(一)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/09/08/ckg7r5wm0000asknma0v2fjdy/" title="WebPack的配置(一)"><img class="cover" data-lazy-src="/./img/cover03.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-08</div><div class="title">WebPack的配置(一)</div></div></a></div></div></div></article></main><footer id="footer" style="background-image: url(/./img/cover01.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By Bruce Liang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">嗨，来看我<a target="_blank" rel="noopener" href='https://gtliangming.gtihub.io'>博客</a>的陌生人，今天又是充满希望的一天！</div><div class="icp"><a><img class="icp-icon" src="/img/icp.png"/><span>陕ICP备19024533号</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script defer="defer" id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script src="/js/third-party/click_heart.js" async="async"></script></div></body></html>
