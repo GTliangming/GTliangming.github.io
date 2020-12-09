@@ -1,0 +1,170 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>WebPack的配置(二) | 小明同学的博客</title><meta name="description" content="webpack.config.js(二)之前说到了打包模式(mode)、出入口文件(entry &amp; output)、模块(model)的配置以及注意事项  传送门：webpck.config.js(一) 这次来说接下来的插件(plugins) plugins 插件插件是 webpack 的 支柱 功能。webpack 自身也是构建于你在 webpack 配置中用到的相同的插件系统之上！ 插"><meta name="keywords" content="WebPack"><meta name="author" content="Bruce Liang"><meta name="copyright" content="Bruce Liang"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="http://gtliangming.github.io/2020/09/08/ckih06jxn000ifanm29ao6b78/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin="crossorigin"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta property="og:type" content="article"><meta property="og:title" content="WebPack的配置(二)"><meta property="og:url" content="http://gtliangming.github.io/2020/09/08/ckih06jxn000ifanm29ao6b78/"><meta property="og:site_name" content="小明同学的博客"><meta property="og:description" content="webpack.config.js(二)之前说到了打包模式(mode)、出入口文件(entry &amp; output)、模块(model)的配置以及注意事项  传送门：webpck.config.js(一) 这次来说接下来的插件(plugins) plugins 插件插件是 webpack 的 支柱 功能。webpack 自身也是构建于你在 webpack 配置中用到的相同的插件系统之上！ 插"><meta property="og:image" content="http://gtliangming.github.io/img/cover06.jpg"><meta property="article:published_time" content="2020-09-08T07:05:00.000Z"><meta property="article:modified_time" content="2020-12-09T05:59:34.124Z"><meta name="twitter:card" content="summary"><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web&amp;display=swap"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.1.1',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"簡"},
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  bookmark: {
+    message_prev: '按',
+    message_next: '键将本页加入书签'
+  },
+  runtime: '天',
+  date_suffix: {"one_hour":"刚刚","hours":"小时前","day":"天前"},
+  copyright: undefined,
+  ClickShowText: undefined,
+  medium_zoom: false,
+  fancybox: true,
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  baiduPush: false,
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+    },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2020-12-09 13:59:34'
+}</script><noscript><style type="text/css">
+#nav {
+  opacity: 1
+}
+.justified-gallery img {
+  opacity: 1
+}
+</style></noscript><script>var activateDarkMode = function () {
+  document.documentElement.setAttribute('data-theme', 'dark')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+  }
+}
+var activateLightMode = function () {
+  document.documentElement.setAttribute('data-theme', 'light')
+  if (document.querySelector('meta[name="theme-color"]') !== null) {
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+  }
+}
+
+var autoChangeMode = 'false'
+var t = saveToLocal.get('theme')
+if (autoChangeMode === '1') {
+  var isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+  var isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+  var isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+  var hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+  if (t === undefined) {
+    if (isLightMode) activateLightMode()
+    else if (isDarkMode) activateDarkMode()
+    else if (isNotSpecified || hasNoSupport) {
+      var now = new Date()
+      var hour = now.getHours()
+      var isNight = hour <= 6 || hour >= 18
+      isNight ? activateDarkMode() : activateLightMode()
+    }
+    window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+      if (saveToLocal.get('theme') === undefined) {
+        e.matches ? activateDarkMode() : activateLightMode()
+      }
+    })
+  } else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else if (autoChangeMode === '2') {
+  now = new Date()
+  hour = now.getHours()
+  isNight = hour <= 6 || hour >= 18
+  if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+  else if (t === 'light') activateLightMode()
+  else activateDarkMode()
+} else {
+  if (t === 'dark') activateDarkMode()
+  else if (t === 'light') activateLightMode()
+}</script><meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="小明同学的博客" type="application/atom+xml">
+</head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" data-lazy-src="https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=571311353,3094509045&amp;fm=26&amp;gp=0.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">文章</div><div class="length_num">14</div></a></div></div><div class="mobile_data_item is-center">      <div class="mobile_data_link"><a href="/tags/"><div class="headline">标签</div><div class="length_num">11</div></a></div></div><div class="mobile_data_item is-center">     <div class="mobile_data_link"><a href="/categories/"><div class="headline">分类</div><div class="length_num">9</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div></div></div><div id="body-wrap"><div id="web_bg" data-type="photo"></div><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">目录</div><div class="sidebar-toc__progress"><span class="progress-notice">你已经读了</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#webpack-config-js-%E4%BA%8C"><span class="toc-number">1.</span> <span class="toc-text">webpack.config.js(二)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#plugins-%E6%8F%92%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">plugins 插件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E3%80%81HTMLWebpackPlugin%E5%9F%BA%E6%9C%AC%E4%BD%9C%E7%94%A8%E5%B0%B1%E6%98%AF%E7%94%9F%E6%88%90html%E6%96%87%E4%BB%B6%E3%80%82"><span class="toc-number">1.1.1.</span> <span class="toc-text">一、HTMLWebpackPlugin基本作用就是生成html文件。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E3%80%81HotModuleReplacementPlugin"><span class="toc-number">1.1.2.</span> <span class="toc-text">二、HotModuleReplacementPlugin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E3%80%81DefinePlugin"><span class="toc-number">1.1.3.</span> <span class="toc-text">三、DefinePlugin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E3%80%81ProvidePlugin"><span class="toc-number">1.1.4.</span> <span class="toc-text">四、ProvidePlugin</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%94%E3%80%81CleanWebpackPlugin"><span class="toc-number">1.1.5.</span> <span class="toc-text">五、CleanWebpackPlugin</span></a></li></ol></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(/./img/cover06.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">小明同学的博客</a></span><span id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 主页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><i class="fa-fw fas fa-list"></i><span> List</span><i class="fas fa-chevron-down expand"></i></a><ul class="menus_item_child"><li><a class="site-page" href="/music/"><i class="fa-fw fas fa-music"></i><span> Music</span></a></li><li><a class="site-page" href="/movies/"><i class="fa-fw fas fa-video"></i><span> Movie</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> 链接</span></a></div></div><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">WebPack的配置(二)</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-09-08T07:05:00.000Z" title="发表于 2020-09-08 15:05:00">2020-09-08</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2020-12-09T05:59:34.124Z" title="更新于 2020-12-09 13:59:34">2020-12-09</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/WebPack/">WebPack</a></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h2 id="webpack-config-js-二"><a href="#webpack-config-js-二" class="headerlink" title="webpack.config.js(二)"></a>webpack.config.js(二)</h2><p>之前说到了打包模式(mode)、出入口文件(entry &amp; output)、模块(model)的配置以及注意事项 </p>
+<p><a target="_blank" rel="noopener" href="https://www.tapd.cn/20278041/markdown_wikis/#1120278041001077808@toc0">传送门：webpck.config.js(一)</a></p>
+<p>这次来说接下来的插件(plugins)</p>
+<h3 id="plugins-插件"><a href="#plugins-插件" class="headerlink" title="plugins 插件"></a>plugins 插件</h3><p><strong>插件</strong>是 webpack 的 <a target="_blank" rel="noopener" href="https://github.com/webpack/tapable">支柱</a> 功能。webpack 自身也是构建于你在 webpack 配置中用到的<strong>相同的插件系统</strong>之上！</p>
+<p>插件目的在于解决 <a target="_blank" rel="noopener" href="https://webpack.docschina.org/concepts/loaders">loader</a> 无法实现的<strong>其他事</strong>。</p>
+<p>用法</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">const</span> HtmlWebpackPlugin = <span class="built_in">require</span>(<span class="string">&#x27;html-webpack-plugin&#x27;</span>); <span class="comment">// 通过 npm 安装</span></span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">&#x27;./path/to/my/entry/file.js&#x27;</span>,</span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">&#x27;my-first-webpack.bundle.js&#x27;</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="built_in">module</span>: &#123;</span><br><span class="line">    rules: [</span><br><span class="line">      &#123;</span><br><span class="line">        test: <span class="regexp">/\.(js|jsx)$/</span>,</span><br><span class="line">        use: <span class="string">&#x27;babel-loader&#x27;</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  &#125;,</span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.ProgressPlugin(),</span><br><span class="line">    <span class="keyword">new</span> HtmlWebpackPlugin(&#123;<span class="attr">template</span>: <span class="string">&#x27;./src/index.html&#x27;</span>&#125;)</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>常用的插件</p>
+<h4 id="一、HTMLWebpackPlugin基本作用就是生成html文件。"><a href="#一、HTMLWebpackPlugin基本作用就是生成html文件。" class="headerlink" title="一、HTMLWebpackPlugin基本作用就是生成html文件。"></a>一、HTMLWebpackPlugin基本作用就是生成html文件。</h4><p><code>HTMLWebpackPlugin</code>的一个实例生成一个html文件，如果单页应用中需要多个页面入口，或者多页应用时配置多个html时，那么就需要实例化该插件多次；</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> HTMLWebpackPlugin(&#123;</span><br><span class="line">		template: <span class="string">&quot;./src/assets/ejs/template.ejs&quot;</span>,</span><br><span class="line">		inject: <span class="string">&quot;body&quot;</span>,</span><br><span class="line">		inlineSource: <span class="string">&quot;runtime~main.*js$&quot;</span></span><br><span class="line">&#125;),</span><br></pre></td></tr></table></figure>
+
+
+
+<p>原理：将 webpack中<code>entry</code>配置的相关入口chunk  和  <code>extract-text-webpack-plugin</code>抽取的css样式   插入到该插件提供的<code>template</code>或者<code>templateContent</code>配置项指定的内容基础上生成一个html文件，具体插入方式是将样式<code>link</code>插入到<code>head</code>元素中，<code>script</code>插入到<code>head</code>或者<code>body</code>中。</p>
+<h4 id="二、HotModuleReplacementPlugin"><a href="#二、HotModuleReplacementPlugin" class="headerlink" title="二、HotModuleReplacementPlugin"></a>二、HotModuleReplacementPlugin</h4><p>热模块替换（HMR）是webpack提供的最有用的特性之一，热模块替换可以让模块在没有页面刷新的情况下实时更新代码改动结果；</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">&#x27;path&#x27;</span>);</span><br><span class="line"><span class="keyword">const</span> webpack = <span class="built_in">require</span>(<span class="string">&#x27;webpack&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: <span class="string">&#x27;./index.js&#x27;</span>,</span><br><span class="line"></span><br><span class="line">  plugins: [</span><br><span class="line">    <span class="keyword">new</span> webpack.HotModuleReplacementPlugin()</span><br><span class="line">  ],</span><br><span class="line"></span><br><span class="line">  output: &#123;</span><br><span class="line">    filename: <span class="string">&#x27;main.js&#x27;</span>,</span><br><span class="line">    path: path.resolve(__dirname, <span class="string">&#x27;dist&#x27;</span>),</span><br><span class="line">    publicPath: <span class="string">&#x27;/&#x27;</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>上述代码配置中需要注意地方：<br> 如果已经通过 <a target="_blank" rel="noopener" href="https://www.webpackjs.com/plugins/hot-module-replacement-plugin"><code>HotModuleReplacementPlugin</code></a> 启用了<a target="_blank" rel="noopener" href="https://www.webpackjs.com/concepts/hot-module-replacement">模块热替换(Hot Module Replacement)</a>，则它的接口将被暴露在 <a target="_blank" rel="noopener" href="https://www.webpackjs.com/api/module-variables#module-hot-webpack-specific-"><code>module.hot</code> 属性</a>下面。通常，用户先要检查这个接口是否可访问，然后再开始使用它</p>
+</blockquote>
+<p><strong><em>在你的代码中插入热替换代码</em></strong></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 在入口文件结尾处插入</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">module</span>.hot) &#123;</span><br><span class="line">    <span class="built_in">module</span>.hot.accept();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>只有被 “accept”的代码模块才会被热更新，所以你需要在父节点或者父节点的父节点… module.hot.accept 调用模块。如以上代码所示，在入口文件加入 module.hot.accept之后在入口文件引用的任何子模块更新都会触发热更新。模块更新完成，浏览器会输出类型以下信息</p>
+</blockquote>
+<p>![image-20200924182054973](/Users/lt/Library/Application Support/typora-user-images/image-20200924182054973.png)</p>
+<p><strong><em>也可以像官方提供的实例一样accept特定的模块，</em></strong></p>
+<p><strong><em>如下举个栗子🌰</em></strong>  —&gt;例如在M站的Frame.tsx内。当’./app’有任何更新是都会触发热模块更新</p>
+<p>![image-20200924181939409](/Users/lt/Library/Application Support/typora-user-images/image-20200924181939409.png)</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/webpack/docs/wiki/hot-module-replacement-with-webpack">更多Hot Module Replacement资料参考</a></p>
+<h4 id="三、DefinePlugin"><a href="#三、DefinePlugin" class="headerlink" title="三、DefinePlugin"></a>三、DefinePlugin</h4><p><code>DefinePlugin</code>是一个设置全局变量的插件</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 再举个栗子🌰 M站webpack.config.js 146~151</span></span><br><span class="line"><span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">			<span class="string">&quot;process.env.NODE_ENV&quot;</span>: <span class="built_in">JSON</span>.stringify(process.env.NODE_ENV),</span><br><span class="line">			__DEV__: isDev,</span><br><span class="line">			IS_SSR: <span class="built_in">JSON</span>.stringify(<span class="literal">false</span>),</span><br><span class="line">			IS_FRAME_ONLY: <span class="built_in">JSON</span>.stringify(<span class="literal">false</span>)</span><br><span class="line">		&#125;),</span><br><span class="line"><span class="comment">// M-SSR next.config.js 23-26</span></span><br><span class="line"> <span class="keyword">new</span> webpack.DefinePlugin(&#123;</span><br><span class="line">				__SERVER__: isServer,</span><br><span class="line">				IS_FRAME_ONLY: <span class="literal">false</span>,</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>通过DefinePlugin定义的变量可在全局代码中使用，例如Webpack配置文件定义了<em>SERVER</em>= isServer，如果代码中存在如下调用：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">if</span>(_SERVER_ !== isServer))&#123;<span class="built_in">console</span>.log(<span class="number">1111</span>)&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 就等同于</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>（<span class="literal">false</span>）&#123;<span class="built_in">console</span>.log(<span class="number">11111</span>)&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>插件原理：DefinePlugin做的工作是在源代码基础上执行的全局查找替换工作，将DefinePlugin插件中定义的变量替换为插件中定义的变量值。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://link.jianshu.com/?t=https://webpack.js.org/plugins/define-plugin">更多 DefinePlugin资料参考</a></p>
+<h4 id="四、ProvidePlugin"><a href="#四、ProvidePlugin" class="headerlink" title="四、ProvidePlugin"></a>四、ProvidePlugin</h4><p>自动加载模块，而不必到处 <code>import</code> 或 <code>require</code>  </p>
+<p>例如我们要使用jquery</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">new</span> webpack.ProvidePlugin(&#123;</span><br><span class="line">  $: <span class="string">&#x27;jquery&#x27;</span>,</span><br><span class="line">  jQuery: <span class="string">&#x27;jquery&#x27;</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">然后在代码任意地方</span><br><span class="line">$(<span class="string">&quot;#test&quot;</span>)</span><br><span class="line">jQuery(<span class="string">&quot;#test&quot;</span>)  这两种都可以实现jquery的用法</span><br></pre></td></tr></table></figure>
+
+<h4 id="五、CleanWebpackPlugin"><a href="#五、CleanWebpackPlugin" class="headerlink" title="五、CleanWebpackPlugin"></a>五、CleanWebpackPlugin</h4><p>作用： 当我们打包好一个文件生成了对应的bundle文件 ，但当文件改变时又会生成一个新的bundle文件，之前的就没有用了，但是没有删除，增加了代码的负重。所以就要使用CleanWebpackPlugin插件来删除那些旧的无用的bundle文件，只保留最新的</p>
+<p>安装 <code> npm i clean-webpack-plugin --save-dev</code></p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">plugins:[</span><br><span class="line">        <span class="keyword">new</span> CleanWebpackPlugin(), <span class="comment">// webpack4.0默认文件夹为dist</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Bruce Liang</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://gtliangming.github.io/2020/09/08/ckih06jxn000ifanm29ao6b78/">http://gtliangming.github.io/2020/09/08/ckih06jxn000ifanm29ao6b78/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://gtliangming.github.io" target="_blank">小明同学的博客</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/WebPack/">WebPack</a></div><div class="post_share"><div class="social-share" data-image="/./img/cover06.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/09/08/ckih06jxt000sfanmasgreymx/"><img class="prev-cover" data-lazy-src="/./img/cover01.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">将node.js搭建的express项目如何部署到服务器上</div></div></a></div><div class="next-post pull-right"><a href="/2020/09/08/ckih06jxl000gfanm0h8i2btp/"><img class="next-cover" data-lazy-src="/./img/cover01.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">WebPack的配置(一)</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="fas fa-thumbs-up fa-fw"></i><span> 相关推荐</span></div><div class="relatedPosts-list"><div><a href="/2020/09/08/ckih06jxl000gfanm0h8i2btp/" title="WebPack的配置(一)"><img class="cover" data-lazy-src="/./img/cover01.jpg"><div class="content is-center"><div class="date"><i class="far fa-calendar-alt fa-fw"></i> 2020-09-08</div><div class="title">WebPack的配置(一)</div></div></a></div></div></div></article></main><footer id="footer" style="background-image: url(/./img/cover06.jpg)" data-type="photo"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2020 By Bruce Liang</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div><div class="footer_custom_text">嗨，来看我<a target="_blank" rel="noopener" href='https://gtliangming.gtihub.io'>博客</a>的陌生人，今天又是充满希望的一天！</div><div class="icp"><a><img class="icp-icon" src="/img/icp.png"/><span>陕ICP备19024533号</span></a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/instant.page/instantpage.min.js" type="module" defer></script><script src="https://cdn.jsdelivr.net/npm/vanilla-lazyload/dist/lazyload.iife.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div><script defer="defer" id="ribbon" src="/js/third-party/canvas-ribbon.js" size="150" alpha="0.6" zIndex="-1" mobile="true" data-click="true"></script><script src="/js/third-party/click_heart.js" async="async"></script></div></body></html>
